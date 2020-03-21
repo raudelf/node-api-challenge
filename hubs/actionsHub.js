@@ -43,4 +43,47 @@ router.post('/', (req, res) => {
         });
 });
 
+
+router.put('/:id', (req, res) => {
+    const id = req.params.id;
+    const body = req.body;
+
+    Hubs.update(id, body)
+        .then((updated) => {
+            if (updated) {
+                if (body.project_id && body.description && body.notes) {
+                    res.status(200).json(body);
+                } else {
+                    res.status(400).json({ errorMessage: 'Please provide a project_id of an existing project, a description, and notes for the update.'});
+                };
+            } else {
+                res.status(404).json({message: 'Action does not exist'});
+            };
+        })
+        .catch(err => {
+            console.log('There was an issue updating the action to server.');
+            res.status(500).json({error: 'There was an issue updating the action to server.'});
+        });
+});
+
+
+// DELETE Request
+router.delete('/:id', (req, res) => {
+    const id = req.params.id;
+
+    Hubs.remove(id)
+        .then(deleted => {
+            if (deleted) {
+                res.status(200).json(deleted).end();
+            } else {
+                res.status(404).json({ errorMessage: 'The action with the specified ID does not exist.'})
+            };
+        })
+        .catch(err => {
+            console.log('The action could not be removed.');
+            res.status(500).json({ error: 'The action could not be removed.'});
+        });
+});
+
+
 module.exports = router;
