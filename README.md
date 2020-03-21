@@ -40,13 +40,24 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+    `Express can be used to handle requests / responses as well as the Router for performing middleware and routing URLs.`
+
 - [ ] Describe Middleware?
+
+    `Middleware consists of small function that provide a way to ectend featured from the Express framework.`
 
 - [ ] Describe a Resource?
 
+    `A resource is basically the data in an API`
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+    `An API can return an OK code (usually a 200 code).`
+
 - [ ] How can we partition our application into sub-applications?
+
+    `We can partition applications into sub-apps by using the Route from the Express framework`
+    
 
 ## Minimum Viable Product
 
