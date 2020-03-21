@@ -1,14 +1,15 @@
 const express = require('express');
-
-// Hub Imports
-const projectHub = require('./hubs/projectsHub');
-
 const server = express();
 
 server.use(express.json());
 
+// Hub Imports
+const projectHub = require('./hubs/projectsHub');
+const actionHub = require('./hubs/actionsHub');
+
 // Routers
 server.use('/api/projects', projectHub);
+server.use('/api/actions', actionHub);
 
 // Landing Page Endpoint
 server.get('/', (req, res) => {
