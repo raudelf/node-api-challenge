@@ -23,6 +23,25 @@ router.get('/:id', (req, res) => {
         });
 });
 
+router.get('/actions/:id', (req, res) => {
+    const id = req.params.id;
+
+    Hubs.getProjectActions(id)
+        .then(projects => {
+            if (projects) {
+                console.log('Fetched Data: ', projects);
+                res.status(200).json(projects);
+            } else {
+                res.status(404).json({errorMessage: 'Project does not exist'})
+            }
+        })
+        .catch(err => {
+            console.log('Projects could not be retrieved...');
+            res.status(500).json({ error: 'Projects could not be retrieved...'});
+        });
+});
+
+
 
 // POST Request
 router.post('/', (req, res) => {
