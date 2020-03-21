@@ -27,17 +27,17 @@ router.get('/actions/:id', (req, res) => {
     const id = req.params.id;
 
     Hubs.getProjectActions(id)
-        .then(projects => {
-            if (projects) {
-                console.log('Fetched Data: ', projects);
-                res.status(200).json(projects);
+        .then(projectActions => {
+            if (projectActions) {
+                console.log('Fetched Project Actions: ', projectActions);
+                res.status(200).json(projectActions);
             } else {
-                res.status(404).json({errorMessage: 'Project does not exist'})
+                res.status(404).json({errorMessage: 'Project Actions does not exist'})
             }
         })
         .catch(err => {
-            console.log('Projects could not be retrieved...');
-            res.status(500).json({ error: 'Projects could not be retrieved...'});
+            console.log('Project Actions could not be retrieved...');
+            res.status(500).json({ error: 'Project Actions could not be retrieved...'});
         });
 });
 
